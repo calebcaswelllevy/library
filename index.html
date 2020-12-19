@@ -9,14 +9,35 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="css/style.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
 
-  <p>Hello, world!</p>
+  <p>Library</p>
+  <div id="stacks"></div>
+  <button class="open-button" onclick="openForm()">Open Form</button>
+  <div class="form-popup" id="bookAdder">
+    <form action="" class="form-container">
+      <h1>Add New Book</h1>
+      <label for="title">Title</label>
+      <input type="text" placeholder="enter book title" name="title" required>
 
-  <script src="js/script.js"></script>
+      <label for="author">Author</label>
+      <input type="text" placeholder="enter book author" name="author" required>
+
+      <label for="pages">Number of Pages</label>
+      <input type="text" placeholder="enter number of pages" name="pages" required>
+
+      <label for="read">Read</label>
+      <input type="text" placeholder="Have you read this book?" name="read" required>
+
+      <button type="submit" value="Submit" class="btn" onclick="parseForm(this.form)">Add Book</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
