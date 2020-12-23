@@ -1,5 +1,16 @@
 {box-sizing: border-box;}
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.bookTile {
+  flex: 0 1 auto;
+}
+
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
   background-color: #555;

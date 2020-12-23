@@ -24,10 +24,47 @@ function showBooks(myLibrary) {
     const stacks = document.getElementById('stacks');
     stacks.innerHTML = "";
     for (let i =0; i< myLibrary.length; i++){
-        let book = document.createElement('div')
+        let book = document.createElement('div');
+        let bookTile = document.createElement('div');
+        bookTile.classList.add("bookTile");
+        let button = document.createElement('button');
+        let remove = document.createElement('button');
+        button.textContent = "Toggle read";
+        let c = () => {toggleRead(myLibrary[i])};
+        button.onclick = c;
+        remove.textContent = "Remove";
+        //Need to solve this problem with remove button: it removes book 
+        remove.onclick = () => {
+            console.log("removing");
+            removeBook(myLibrary, i)};
         book.textContent = myLibrary[i].info();
-        stacks.appendChild(book);
+        book.setAttribute('id', i);
+        console.log(book.id);
+        bookTile.appendChild(book);
+        
+        bookTile.appendChild(button);
+        bookTile.appendChild(remove);
+        stacks.appendChild(bookTile);
     }
+}
+
+function toggleRead(book) {
+    if (book.read.toLowerCase() === "yes") { 
+        book.read = "no";
+    }
+    else// no
+     {
+        book.read = "yes";
+    }
+    console.log("toggled")
+    showBooks(myLibrary);
+}
+
+function removeBook(library, i){
+    console.log("lib before = ", myLibrary)
+    library.splice(i, 1);
+    console.log("lib after = ", myLibrary)
+    showBooks();
 }
 
 function openForm() {
@@ -37,16 +74,6 @@ function openForm() {
     document.getElementById("bookAdder").style.display = "none";
   }
 
-function parseForm(form) {
-    //takes elements of form, and stores them as a book, then adds to library
-    let newBook = new Book(form.elements[0].value, form.elements[1].value, form.elements[2].value, form.elements[3].value)
-    
-    addBookToLibrary(newBook, myLibrary);
-    
-    showBooks(myLibrary);
 
-    console.log("this is running")
-  
-}
 
 showBooks(myLibrary);
