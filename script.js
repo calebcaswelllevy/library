@@ -1,4 +1,28 @@
 
+//const firebase = require("firebase");
+// Required for side-effects
+//require("firebase/firestore");
+
+// Initialize Cloud Firestore through Firebase
+(function() {
+
+//initialize firebase
+//firebase.initializeApp({
+ //   apiKey: 'AIzaSyApGOFaDj07yo0nMLeOBrytNxD2sHoSSDI',
+//    authDomain: 'library-2df85.firebaseapp.com',
+//    projectId: 'library-2df85'
+//  });
+  
+  //Get Elements
+  const preObject = document.getElementById('library')
+
+  //Create references
+  const dbRefObject = firebase.database().ref().child('library');
+
+  //Sync object changes
+  dbRefObject.on('value', snap => console.log(snap.val()));
+
+}());
 class Book { // for book objects in the library
     constructor(title, author, pages, read) {
         this.title = title;
@@ -15,35 +39,58 @@ class Book { // for book objects in the library
 
 let myLibrary = [];// to hold books as an array of objects
 myLibrary.push(new Book("Grapes of Wrath", "steinbeck", "100", "yes"))
+myLibrary.push(new Book("East of Eden", "Steinbeck", "100", "no"))
+myLibrary.push(new Book("Blood Meridian", "McArthy", "100", "yes"))
 
 function addBookToLibrary(book, library) {
     library.push(book);
 }
 
 function showBooks(myLibrary) {
-    const stacks = document.getElementById('stacks');
+    const stacks = document.getElementById('books');
     stacks.innerHTML = "";
+    console.log("now drawing library:", myLibrary, "\n Number of books: ", myLibrary.length)
+   
+   //need to refactor this to work with table html
+   // - create td objects for each element
+   // - create tr object to represent book
+   // - populate each element with input text
+   // - add td elements to tr
+   // - add buttons to the end
+
     for (let i =0; i< myLibrary.length; i++){
-        let book = document.createElement('div');
-        let bookTile = document.createElement('div');
+        let bookTile = document.createElement('tr');
         bookTile.classList.add("bookTile");
+        bookTile.id = i;
+            for (let j = 0; j<4; j++) {
+                let keys = ['title', 'author', 'pages', 'read']
+                let cell = document.createElement('td');
+                cell.textContent = myLibrary[i][keys[j]];
+                bookTile.appendChild(cell);
+            }
+
+
         let button = document.createElement('button');
         let remove = document.createElement('button');
+        let buttonCell = document.createElement('td');
+        let removeCell = document.createElement('td');
         button.textContent = "Toggle read";
         let c = () => {toggleRead(myLibrary[i])};
         button.onclick = c;
         remove.textContent = "Remove";
-        //Need to solve this problem with remove button: it removes book 
+        button.classList.add("toggle-button", "btn");
+        remove.classList.add("cancel", "btn")
+        
         remove.onclick = () => {
             console.log("removing");
             removeBook(myLibrary, i)};
-        book.textContent = myLibrary[i].info();
-        book.setAttribute('id', i);
-        console.log(book.id);
-        bookTile.appendChild(book);
         
-        bookTile.appendChild(button);
-        bookTile.appendChild(remove);
+        
+     
+        buttonCell.appendChild(button);
+        removeCell.appendChild(remove);
+        bookTile.appendChild(buttonCell);
+        bookTile.appendChild(removeCell);
         stacks.appendChild(bookTile);
     }
 }
@@ -61,10 +108,11 @@ function toggleRead(book) {
 }
 
 function removeBook(library, i){
-    console.log("lib before = ", myLibrary)
+    console.log("Removing book : ", i);
+    console.log("lib before = ", library)
     library.splice(i, 1);
-    console.log("lib after = ", myLibrary)
-    showBooks();
+    console.log("lib after = ", library)
+    showBooks(library);
 }
 
 function openForm() {

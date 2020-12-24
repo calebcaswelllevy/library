@@ -1,4 +1,17 @@
-{box-sizing: border-box;}
+
+html{
+  min-height: 100%;
+  position:relative;
+}
+body {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  background: linear-gradient(to top, rgba(0,152,121, .3),rgba(0,152,121, .3), rgba(0, 82, 153, 0.6)
+  );
+  font-family: roboto, sans-serif;
+  font-weight: bold;
+}
 
 .container {
   display: flex;
@@ -11,9 +24,46 @@
   flex: 0 1 auto;
 }
 
+.stacks {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  align-self: flex;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.stacks thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-size: 1.3rem;
+}
+
+.stacks th,
+.stacks td {
+  padding: 12px 15px;
+}
+
+.stacks tbody tr {
+  border-bottom: thin solid #dddddd;
+}
+
+.stacks tbody tr:nth-of-type(even) {
+  background-color:   rgba(0,152,121, 0.2);
+}
+
+.stacks tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.stacks tbody tr.active-row {
+  font-weight: bold;
+}
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
-  background-color: #555;
+  background-color: #7A0099;
   color: white;
   padding: 16px 20px;
   border: none;
@@ -37,18 +87,19 @@
 
   /* Add styles to the form container */
 .form-container {
+    font-family: sans-serif;
     max-width: 300px;
     padding: 10px;
-    background-color: white;
+    background-color: #ffffff;
   }
 
   /* Full-width input fields */
 .form-container input[type=text], .form-container input[type=password] {
-    width: 100%;
+    width: 90%;
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
-    background: #f1f1f1;
+    background: #e5ebff;
   }
 
   /* When the inputs get focus, do something */
@@ -59,7 +110,7 @@
   
   /* Set a style for the submit/login button */
 .form-container .btn {
-    background-color: #4CAF50;
+    background-color: #001F99;
     color: white;
     padding: 16px 20px;
     border: none;
@@ -69,12 +120,51 @@
     opacity: 0.8;
   }
 
+/*set style for table buttons*/
+.stacks .btn {
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+
+/* set color for toggle */
+.stacks .btn {
+  background-color: #001F99
+}
   /* Add a red background color to the cancel button */
 .form-container .cancel {
-    background-color: red;
+    background-color: #99001f;
   }
+
+  /* add red background to remove button*/
+.stacks .cancel {
+  background-color: #99001f;
+
+}
 
   /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
+
+header {
+  font-family: "bangers", cursive;;
+  text-align: center;
+}
+
+#title {
+  
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 3em;
+  color: #994700;
+}
+
+#subtitle {
+  color: #994700;
+  font-size: 2em;
+}
