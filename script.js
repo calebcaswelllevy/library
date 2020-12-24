@@ -4,7 +4,7 @@
 //require("firebase/firestore");
 
 // Initialize Cloud Firestore through Firebase
-(function() {
+//(function() {
 
 //initialize firebase
 //firebase.initializeApp({
@@ -14,15 +14,17 @@
 //  });
   
   //Get Elements
-  const preObject = document.getElementById('library')
+  //const preObject = document.getElementById('library')
 
   //Create references
-  const dbRefObject = firebase.database().ref().child('library');
+  //const dbRefObject = firebase.database().ref().child('library');
 
   //Sync object changes
-  dbRefObject.on('value', snap => console.log(snap.val()));
+  //dbRefObject.on('value', snap => console.log(snap.val()));
 
-}());
+//}());
+
+
 class Book { // for book objects in the library
     constructor(title, author, pages, read) {
         this.title = title;
@@ -36,11 +38,20 @@ class Book { // for book objects in the library
         };
     }
 }
+// initialize myLibrary
+let myLibrary;
 
-let myLibrary = [];// to hold books as an array of objects
-myLibrary.push(new Book("Grapes of Wrath", "steinbeck", "100", "yes"))
-myLibrary.push(new Book("East of Eden", "Steinbeck", "100", "no"))
-myLibrary.push(new Book("Blood Meridian", "McArthy", "100", "yes"))
+//load from localstorage if possible
+if (!(localStorage.getItem('library'))) {
+    myLibrary = [];
+    myLibrary.push(new Book("Grapes of Wrath", "steinbeck", "100", "yes"));
+    myLibrary.push(new Book("East of Eden", "Steinbeck", "100", "no"));
+    myLibrary.push(new Book("Blood Meridian", "McArthy", "100", "yes"));
+    localStorage.setItem('library',  JSON.stringify(myLibrary));
+} else {
+    myLibrary = JSON.parse(localStorage.getItem('library'));
+}
+
 
 function addBookToLibrary(book, library) {
     library.push(book);
@@ -49,7 +60,7 @@ function addBookToLibrary(book, library) {
 function showBooks(myLibrary) {
     const stacks = document.getElementById('books');
     stacks.innerHTML = "";
-    console.log("now drawing library:", myLibrary, "\n Number of books: ", myLibrary.length)
+    //console.log("now drawing library:", myLibrary, "\n Number of books: ", myLibrary.length)
    
    //need to refactor this to work with table html
    // - create td objects for each element
