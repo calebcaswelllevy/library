@@ -1,28 +1,5 @@
 
-//const firebase = require("firebase");
-// Required for side-effects
-//require("firebase/firestore");
 
-// Initialize Cloud Firestore through Firebase
-//(function() {
-
-//initialize firebase
-//firebase.initializeApp({
- //   apiKey: 'AIzaSyApGOFaDj07yo0nMLeOBrytNxD2sHoSSDI',
-//    authDomain: 'library-2df85.firebaseapp.com',
-//    projectId: 'library-2df85'
-//  });
-  
-  //Get Elements
-  //const preObject = document.getElementById('library')
-
-  //Create references
-  //const dbRefObject = firebase.database().ref().child('library');
-
-  //Sync object changes
-  //dbRefObject.on('value', snap => console.log(snap.val()));
-
-//}());
 
 
 class Book { // for book objects in the library
