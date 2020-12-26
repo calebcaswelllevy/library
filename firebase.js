@@ -17,16 +17,16 @@
   firebase.analytics();
   console.log("firebase script running")
 
+ 
 
+// To do:
+// 1. set event new listener function
+// 2. get values from submit
+// 3. Get reference to firebase (DONE)
+// 4. pass values to firebase
+// 5. Figure out how to load from firebase on startup
+// 6. Make toggle button that allows user to choose local or firebase
+// 7. Function to toggle which data to load
 
-  
-  //Get Elements
-  const preObject = document.getElementById('library')
-
-  //Create references
-  const dbRefObject = firebase.database().ref().child('library');
-  
-  //Sync object changes
-  dbRefObject.on('value', snap => console.log(snap.val()));
 
 }());

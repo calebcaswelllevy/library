@@ -38,10 +38,11 @@ if (!(localStorage.getItem('library'))) {
     myLibrary = JSON.parse(localStorage.getItem('library'));
 }
 
-
+// add book to library
 function addBookToLibrary(book, library) {
     library.push(book);
 }
+
 
 function showBooks(myLibrary) {
     //creates html list to show library object
@@ -81,7 +82,6 @@ function showBooks(myLibrary) {
         remove.classList.add("cancel", "btn")
         
         remove.onclick = () => {
-            console.log("removing");
             removeBook(myLibrary, i)};
         
         
@@ -94,6 +94,7 @@ function showBooks(myLibrary) {
     }
 }
 
+// change read status
 function toggleRead(book) {
     // if its yes, change to no
     if (book.read.toLowerCase() === "yes") { 
@@ -103,11 +104,11 @@ function toggleRead(book) {
      {
         book.read = "yes";
     }
-    console.log("toggled")
+    
     localStorage.setItem('library',  JSON.stringify(myLibrary));
     showBooks(myLibrary);
 }
-
+// delete book from library
 function removeBook(library, i){
     
     //Splice out book i
@@ -120,7 +121,7 @@ function removeBook(library, i){
     localStorage.setItem('library',  JSON.stringify(myLibrary));
 
 }
-
+// open and close the form
 function openForm() {
     document.getElementById("bookAdder").style.display = "block";
   }
@@ -128,6 +129,38 @@ function openForm() {
     document.getElementById("bookAdder").style.display = "none";
   }
 
+ /*
+ /// FIREBASE
+  //Get Elements
+  const preObject = document.getElementById('library')
 
+  //Create db reference
+  const dbRef = firebase.database().ref('library');
+  
+  // create button reference
+  let submit = document.getElementById("submit");
+  
+  submit.addEventListener('click', () => {
+      let title = document.getElementById("title").value;
+      let author = document.getElementById("author").value;
+      let pages = document.getElementById("pages").value;
+      let read = document.getElementById("read").value;
+  
+      saveBook();
+  }
+  );
+  //Sync object changes
+  dbRef.on('value', snap => console.log(snap.val()));
 
+  //Save messages to Firebase
+  function saveBook(title, author, pages, read) {
+      let newdbRef = dbRef.push()
+      newdbRef.set({
+        title:title,
+        author:author,
+        pages:pages,
+        read:read
+      })
+  }
+*/
 showBooks(myLibrary);
